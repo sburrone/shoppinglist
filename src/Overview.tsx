@@ -52,8 +52,6 @@ const Overview: FC<OverviewProps> = (props) => {
     },
   ]
 
-  console.log('A', props)
-
   return (
     <List
       dataSource={data}

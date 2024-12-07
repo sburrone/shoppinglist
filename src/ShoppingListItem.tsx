@@ -13,7 +13,6 @@ const ShoppingListItem: FC<ShoppingListItemProps> = (props) => {
   const { item, handleChange, index } = props
 
   const handleDescChange = (value: string) => {
-    console.log('A', value)
     handleChange({ desc: value, price: item.price })
   }
 
