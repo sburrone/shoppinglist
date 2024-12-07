@@ -12,9 +12,9 @@ const App = () => {
   const [total, setTotal] = useState(0)
 
   // ColorMode
-  const switchMode = (e) => {
+  const switchMode = (matches: boolean) => {
     const body = document.body
-    if (e.matches) {
+    if (matches) {
       body.classList.remove('semi-always-light')
       body.classList.add('semi-always-dark')
       if (!body.hasAttribute('theme-mode')) {
@@ -39,11 +39,11 @@ const App = () => {
 
     document.body.style.backgroundColor = 'var(--semi-color-bg-0)'
     const mql = window.matchMedia('(prefers-color-scheme: dark)')
-    mql.addEventListener('change', switchMode)
-    switchMode(mql)
+    mql.addEventListener('change', (e) => switchMode(e.matches))
+    switchMode(mql.matches)
 
     return () => {
-      mql.removeEventListener('change', switchMode)
+      mql.removeEventListener('change', (e) => switchMode(e.matches))
     }
   }, [])
 

@@ -1,8 +1,7 @@
 import { FC, ReactElement } from 'react'
-import { ListItem } from './types'
 import { Avatar, List, Typography } from '@douyinfe/semi-ui'
 import { AvatarColor } from '@douyinfe/semi-ui/lib/es/avatar'
-import { IconCart, IconCreditCard, IconDisc, IconPriceTag, IconShoppingBag } from '@douyinfe/semi-icons'
+import { IconCart, IconCreditCard, IconDisc, IconPriceTag } from '@douyinfe/semi-icons'
 
 interface OverviewProps {
   total: number
