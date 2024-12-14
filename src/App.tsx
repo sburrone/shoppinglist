@@ -54,24 +54,20 @@ const App = () => {
   }
 
   const changeList = (newList: ListItem[]) => {
-    const prices = newList.map((el) => el.price || 0)
-    const newTotal = prices.reduce((acc, val) => {
-      return acc + val
+    const prices = newList.map((el) => ({ price: el.price || 0, qty: el.qty || 1 }))
+    const newTotal: number = prices.reduce((acc, val) => {
+      return acc + val.price * val.qty
     }, 0)
     setTotal(newTotal)
     setList(newList)
     localStorage.setItem('list', JSON.stringify(newList))
   }
 
-  const tickets = Math.floor(total / TICKET_AMOUNT) || 0
-  const change = total % tickets || 0
-  const toNext = TICKET_AMOUNT - change || 0
-
   return (
     <Layout>
       <Layout.Header style={{ padding: 8, textAlign: 'center' }}>
         <Typography.Title>Lista della spesa</Typography.Title>
-        <Overview toNext={toNext} tickets={tickets} total={total} change={change} />
+        <Overview total={total} />
       </Layout.Header>
       <Layout.Content style={{ display: 'flex', alignItems: 'center', flexDirection: 'column', gap: 16 }}>
         <Delete handleReset={handleReset} />

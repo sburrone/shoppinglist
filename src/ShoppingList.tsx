@@ -18,21 +18,28 @@ const ShoppingList: FC<ShoppingListProps> = (props) => {
     setList(newList)
   }
 
+  const handleDelete = (id: string) => {
+    setList(list.filter((el) => el.id !== id))
+  }
+
   const addItem = () => {
-    setList(list.concat({}))
+    setList(list.concat({ id: crypto.randomUUID() }))
   }
 
   return (
     <>
-      <div className="grid">
-        {list.map((item, index) => (
-          <ShoppingListItem
-            key={index}
-            item={item}
-            handleChange={(newItem) => handleChange(newItem, index)}
-            index={index}
-          />
-        ))}
+      <div className="grid" style={{ maxWidth: 'calc(100vw - 20px)' }}>
+        {list.map((item, index) => {
+          return (
+            <ShoppingListItem
+              key={item.id}
+              item={item}
+              handleChange={(newItem) => handleChange(newItem, index)}
+              index={index}
+              handleDelete={() => handleDelete(item.id)}
+            />
+          )
+        })}
       </div>
       <Button style={{ width: 200 }} onClick={addItem}>
         Aggiungi
