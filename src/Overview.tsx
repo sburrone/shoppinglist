@@ -11,7 +11,7 @@ const Overview: FC<OverviewProps> = (props) => {
   const { total } = props
 
   const tickets = Math.floor(total / TICKET_AMOUNT) || 0
-  const change = total % (tickets * TICKET_AMOUNT) || 0
+  const change = total % ((tickets || 1) * TICKET_AMOUNT)
   const toNext = TICKET_AMOUNT - change || 0
 
   return (
