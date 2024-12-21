@@ -35,6 +35,7 @@ const App = () => {
     if (raw) {
       const list = JSON.parse(raw) as ListItem[]
       setList(list)
+      //updateTotal(list)
     }
 
     document.body.style.backgroundColor = 'var(--semi-color-bg-0)'
@@ -53,12 +54,16 @@ const App = () => {
     setTotal(0)
   }
 
-  const changeList = (newList: ListItem[]) => {
-    const prices = newList.map((el) => ({ price: el.price || 0, qty: el.qty || 1 }))
+  const updateTotal = (list: ListItem[]) => {
+    const prices = list.map((el) => ({ price: el.price || 0, qty: el.qty || 1 }))
     const newTotal: number = prices.reduce((acc, val) => {
       return acc + val.price * val.qty
     }, 0)
     setTotal(newTotal)
+  }
+
+  const changeList = (newList: ListItem[]) => {
+    updateTotal(newList)
     setList(newList)
     localStorage.setItem('list', JSON.stringify(newList))
   }
