@@ -1,18 +1,18 @@
-import { FC } from 'react'
-import { Avatar, Col, Row, Typography } from '@douyinfe/semi-ui'
-import { IconCart, IconCreditCard, IconDisc, IconPriceTag } from '@douyinfe/semi-icons'
-import { TICKET_AMOUNT } from './App'
+import {FC} from 'react'
+import {Avatar, Col, Row, Typography} from '@douyinfe/semi-ui'
+import {IconCart, IconCreditCard, IconDisc, IconPriceTag} from '@douyinfe/semi-icons'
 
 interface OverviewProps {
   total: number
+    ticketAmount: number
 }
 
 const Overview: FC<OverviewProps> = (props) => {
-  const { total } = props
+  const { total, ticketAmount } = props
 
-  const tickets = Math.floor(total / TICKET_AMOUNT) || 0
-  const change = total % ((tickets || 1) * TICKET_AMOUNT)
-  const toNext = TICKET_AMOUNT - change || 0
+  const tickets = Math.floor(total / ticketAmount) || 0
+  const change = total % ((tickets || 1) * ticketAmount)
+  const toNext = ticketAmount - change || 0
 
   return (
     <div className="grid">
