@@ -6,7 +6,7 @@ import ShoppingList from './ShoppingList'
 import Overview from './Overview'
 
 const App = () => {
-    const [list, setList] = useState<ListItem[]>([])
+    const [list, setList] = useState<ListItem[]>([{ id: crypto.randomUUID() }])
     const [total, setTotal] = useState(0)
     const [ticketAmount, setTicketAmount] = useState(8)
 
@@ -34,7 +34,6 @@ const App = () => {
         if (raw) {
             const list = JSON.parse(raw) as ListItem[]
             setList(list)
-            //updateTotal(list)
         }
 
         const ticketAmount = localStorage.getItem('ticketAmount')? Number(localStorage.getItem('ticketAmount')) : 8
@@ -51,7 +50,7 @@ const App = () => {
     }, [])
 
     const handleReset = () => {
-        setList([])
+        setList([{ id: crypto.randomUUID() }])
         localStorage.removeItem('list')
         setTotal(0)
     }
